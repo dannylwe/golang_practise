@@ -14,6 +14,10 @@ type Circle struct {
 	Radius float64
 }
 
+type Shape interface {
+	Area() float64
+}
+
 // Perimeter function gets the 2*length + 2*width the perimeter of a rectangle
 func Perimeter(rectangle Rectangle) float64 {
 	return 2 * (rectangle.Length + rectangle.Width)
