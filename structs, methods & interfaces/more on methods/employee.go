@@ -6,14 +6,13 @@ type Employee struct {
 	FirstName, LastName string
 }
 
-func FullName(firstName, lastName string) string {
-	fullName := firstName + lastName
-	return fullName
+func (e Employee) FullName() string {
+	return e.FirstName + " " + e.LastName
 }
 func main() {
-	e := Employee{
+	employee := Employee{
 		FirstName: "Daniel",
 		LastName:  "Roy",
 	}
-	fmt.Println(FullName(e.FirstName, e.LastName))
+	fmt.Println(employee.FullName())
 }
