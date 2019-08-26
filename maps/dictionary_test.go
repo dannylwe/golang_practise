@@ -3,10 +3,10 @@ package dict
 import "testing"
 
 func TestSearch(t *testing.T) {
-	dictionary := map[string]string{"test": "this is a test"}
+	dictionary := Dictionary{"test": "this is a test"}
 	
 	// search by key
-	got := Search(dictionary, "test")
+	got := dictionary.Search("test")
 	want := "this is a test"
 	assertStrings(t, got, want)
 
