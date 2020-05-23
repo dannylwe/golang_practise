@@ -21,7 +21,7 @@ func main() {
 	var result map[string]interface{}
 
 	json.Unmarshal([]byte(array), &result)
-	
+
 	// fmt.Println(result)
 	address := result["address"].(map[string]interface{})
 
