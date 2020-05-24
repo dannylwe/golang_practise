@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 )
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
@@ -31,8 +32,11 @@ func main() {
 	tlsConfig.BuildNameToCertificate()
 
 	server := &http.Server{
-		Addr:      ":9000",
-		TLSConfig: tlsConfig,
+		Addr:         ":9000",
+		TLSConfig:    tlsConfig,
+		ReadTimeout:  6 * time.Second,
+		WriteTimeout: 6 * time.Second,
+		IdleTimeout:  120 * time.Second,
 	}
 
 	fmt.Println("starting server on port 9000")
