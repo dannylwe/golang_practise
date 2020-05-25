@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"golang.org/x/net/http2"
 )
 
 func main() {
@@ -26,7 +27,7 @@ func main() {
 
 	// create https client
 	client := &http.Client{
-		Transport: &http.Transport{
+		Transport: &http2.Transport{
 			TLSClientConfig: &tls.Config{
 				RootCAs:      caCertPool,
 				Certificates: []tls.Certificate{cert},
@@ -44,5 +45,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("%s\n", body)
+	fmt.Printf("%s\n%s\n", body, r.Proto)
 }
