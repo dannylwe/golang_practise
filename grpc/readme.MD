@@ -10,3 +10,5 @@ go get github.com/golang/protobuf/protoc-gen-go@v1.3
 ## Download bindings  
 -https://github.com/protocolbuffers/protobuf/releases/latest  
 
+## Generate Code  
+./protoc.exe -I . currency.proto --go_out=plugins=grpc:currency

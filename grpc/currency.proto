@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-service "Currency" {
+service Currency {
     rpc GetRate(RateRequest) returns (RateResponse);
 }
 
