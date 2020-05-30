@@ -16,8 +16,42 @@ type Repo struct {
 	StargazersCount int `json:"stargazers_count"`
 }
 
-func GetAverageStarsByUsername(username string) (float64, error) {
+type ReposAPI interface {
+	GetRepos(username string) ([]Repo, error)
+}
+
+type Mock struct {}
+
+func(m *Mock) GetRepos(username string) ([]Repo, error){
+	return []Repo{
+		Repo{
+			StargazersCount: 7,
+		},
+		Repo{
+			StargazersCount: 12,
+		},
+	}, nil
+}
+
+
+type Github struct {}
+
+func(g *Github) GetRepos(username string) ([]Repo, error){
 	res, err := http.Get(fmt.Sprintf("https://api.github.com/users/%s/repos", username))
+	if err != nil {
+		return nil, err
+	}
+
+	var repos []Repo
+	if err := json.NewDecoder(res.Body).Decode(&repos); err != nil {
+		return nil, err
+	}
+
+	return repos, nil
+}
+
+func GetAverageStarsByUsername(ReposAPI ReposAPI, username string) (float64, error) {
+	repos, err := ReposAPI.GetRepos(username)
 	if err != nil {
 		return 0, err
 	}
@@ -35,11 +69,6 @@ func GetAverageStarsByUsername(username string) (float64, error) {
 	// bodyBytes, _ := ioutil.ReadAll(res.Body)
 	// logger.Println(string(bodyBytes))
 	
-	var repos []Repo
-	if err := json.NewDecoder(res.Body).Decode(&repos); err != nil {
-		return 0, nil
-	}
-
 	// get dump of response/request
 	// body, _ := httputil.DumpResponse(res, true)
 	// log.Println(string(body))
