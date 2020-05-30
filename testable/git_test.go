@@ -1,17 +1,17 @@
 package testable
 
-import "testing"
+import (
+	"testing"
+)
 
-func TestGetAverageStarsByUsername(t *testing.T){
-	
+func TestGetAverageStarsByUsername(t *testing.T) {
+
 	var tests = []struct {
 		username string
-		want float64
-		
+		want     float64
 	}{
-		{"octocat", 12},
-		{"plutov", 12},
-		{"dannylwe11", 12},
+		{"ocotocat", 9.5},
+		
 	}
 
 	// got := StrInSlice([]string{"a", "b"}, "c")
@@ -19,9 +19,11 @@ func TestGetAverageStarsByUsername(t *testing.T){
 	// 	t.Errorf("expecting false got true")
 	// }
 
+	mock := new(Mock)
+
 	for _, test := range tests {
-		t.Run("Get Average Stars Github", func(t *testing.T){
-			got, err:= GetAverageStarsByUsername(test.username)
+		t.Run("Get Average Stars Github", func(t *testing.T) {
+			got, err := GetAverageStarsByUsername(mock, test.username)
 			if err != nil {
 				t.Errorf("expecting nil err got %v", err)
 
