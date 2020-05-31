@@ -34,7 +34,9 @@ func(m *Mock) GetRepos(username string) ([]Repo, error){
 }
 
 
-type Github struct {}
+type Github struct {
+	url ReposAPI
+}
 
 func(g *Github) GetRepos(username string) ([]Repo, error){
 	res, err := http.Get(fmt.Sprintf("https://api.github.com/users/%s/repos", username))
