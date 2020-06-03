@@ -18,10 +18,11 @@ func TestGetAverageStarsByUsername(t *testing.T){
 	// if got != false {
 	// 	t.Errorf("expecting false got true")
 	// }
-
+	
+	mock := new(Mock)
 	for _, test := range tests {
 		t.Run("Get Average Stars Github", func(t *testing.T){
-			got, err:= GetAverageStarsByUsername(test.username)
+			got, err:= GetAverageStarsByUsername(mock, test.username)
 			if err != nil {
 				t.Errorf("expecting nil err got %v", err)
 
