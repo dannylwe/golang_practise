@@ -15,7 +15,7 @@ const port = ":8080"
 type gravatarService struct {}
 
 func(s * gravatarService) Generate(ctx context.Context, in *pb.GravatarRequest) (*pb.GravatarResponse, error) {
-	log.Printf("Recieved email %v of size %v", in.Email, in.Size)
+	log.Printf("Recieved email %v of size %v from client", in.Email, in.Size)
 	return &pb.GravatarResponse{Url: pb.Gravatar(in.Email, uint32(in.Size))}, nil
 }
 
