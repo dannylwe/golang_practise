@@ -14,7 +14,7 @@ func TestGravatar(t *testing.T) {
 		endpoint := "https://www.gravatar.com/avatar/46040c38d1cbe8ffcd3df6c8ba787951?s=%v"
 		email := "abcd@gmail.com"
 	
-		generatedURL := gravatar(email, size)
+		generatedURL := Gravatar(email, size)
 		expected := fmt.Sprintf(endpoint, size)
 	
 		if expected != generatedURL{
