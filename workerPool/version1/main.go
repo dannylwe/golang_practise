@@ -23,10 +23,10 @@ func main() {
 		for a := range channel {
 			
 			wg.Add(1)
-			go func(){
+			go func(num Acc){
 				defer wg.Done()
-				process(a)
-			}()
+				process(num)
+			}(a)
 		}
 	}()
 
