@@ -1,7 +1,5 @@
 ## How to generate cert and key .pem files  
-openssl req -newkey rsa:2048 -new -nod
-es -x509 -days 3650 -out cert.pem -keyou 
-t key.pem  
+openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -out cert.pem -keyout key.pem  
 After which, follow the prompts  
 
 ## References  
