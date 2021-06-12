@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	_ "embed"
+)
+
+//go:embed sample.txt
+var lorem string
 
 func main() {
-	fmt.Println("hello world")
+	fmt.Println("starting application")
+
+	fmt.Println("lorem text")
+	fmt.Println(lorem)
 }
